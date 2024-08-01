@@ -15,15 +15,16 @@ const PlayGame = ({rule,toggle}) => {
     setselectedNum(undefined);
   };
 
-  const rollDice = () => {
+  const rollDice =  () => {
     if (selectedNum === undefined) {
       seterror("You have not selected any number");
       return;
     }
 
-    setdiceNum((prev) => Math.ceil(Math.random() * 6));
+    const newDiceNum = Math.ceil(Math.random() * 6);
+    setdiceNum(newDiceNum);
 
-    if (selectedNum === diceNum) {
+    if (selectedNum === newDiceNum) {
       setscore((prev) => prev + diceNum);
     } else {
       setscore((prev) => prev - 2);
@@ -136,7 +137,7 @@ const Box = styled.div`
   cursor: pointer;
   background-color: ${(props) => (props.isSelected ? "black" : "white")};
   color: ${(props) => (props.isSelected ? "white" : "black")};
-  transition: 0.3s background ease-out;
+  transition: 0.1s background ease-out;
 
   &:hover{
     background-color: gray;
